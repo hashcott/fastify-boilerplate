@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
 import * as JWT from 'jsonwebtoken';

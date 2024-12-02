@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FastifyReply } from 'fastify';
 
 export class AppError extends Error {
