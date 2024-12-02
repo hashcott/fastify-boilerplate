@@ -7,7 +7,7 @@ Typescript based rest-API boilerplate with prisma and fastify framework.
 
 Install Node dependencies:
 
-`npm install`
+`yarn install`
 
 ### 2. Set up the database
 
@@ -16,13 +16,13 @@ This uses [Postgres database](https://www.postgresql.org/).
 To set up your database, run:
 
 ```sh
-npm run migrate
+yarn migrate
 ```
 
 for production
 
 ```sh
-npm run migrate:prod
+yarn migrate:prod
 ```
 
 ### 3. Generate Prisma Client (type-safe database client)
@@ -30,7 +30,7 @@ npm run migrate:prod
 Run the following command to generate [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/generating-prisma-client):
 
 ```sh
-npm run db:gen
+yarn db:gen
 ```
 
 ### 4. Start the Fastify server
@@ -38,7 +38,7 @@ npm run db:gen
 Launch your Fastify server with this command:
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 ## For Build Generation
@@ -46,7 +46,7 @@ npm run dev
 Build server with command: 
 
 ```sh
-npm run build
+yarn build
 ```
 
 ## Prisma documentation
