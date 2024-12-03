@@ -8,6 +8,7 @@ async function userRouter(fastify: FastifyInstance) {
     '/login',
     {
       schema: {
+        description: 'Login user',
         body: {
           type: 'object',
           required: ['email', 'password'],
@@ -16,9 +17,6 @@ async function userRouter(fastify: FastifyInstance) {
             password: { type: 'string', minLength: 8 },
           },
         },
-      },
-      config: {
-        description: 'User login endpoint',
       },
       preValidation: utils.preValidation(loginSchema),
     },
@@ -39,9 +37,6 @@ async function userRouter(fastify: FastifyInstance) {
             lastName: { type: 'string' },
           },
         },
-      },
-      config: {
-        description: 'User signup endpoint',
       },
       preValidation: utils.preValidation(signupSchema),
     },

@@ -7,7 +7,8 @@ import { utils } from './utils';
 import formbody from '@fastify/formbody';
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
-
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
 loadConfig();
 
 const port = Number(process.env.API_PORT) || 5001;
@@ -22,6 +23,30 @@ const startServer = async () => {
   server.register(formbody);
   server.register(cors);
   server.register(helmet);
+
+  // OpenAPI documentation
+  server.register(fastifySwagger);
+  server.register(fastifySwaggerUi, {
+    routePrefix: '/documentation',
+    uiConfig: {
+      docExpansion: 'full',
+      deepLinking: false,
+    },
+    uiHooks: {
+      onRequest: function (request, reply, next) {
+        next();
+      },
+      preHandler: function (request, reply, next) {
+        next();
+      },
+    },
+    staticCSP: true,
+    transformStaticCSP: (header) => header,
+    transformSpecification: (swaggerObject) => {
+      return swaggerObject;
+    },
+    transformSpecificationClone: true,
+  });
 
   // Register routes
   server.register(userRouter, { prefix: '/api/user' });
@@ -73,6 +98,8 @@ const startServer = async () => {
       port,
       host,
     });
+    await server.ready();
+    await server.swagger();
   } catch (err) {
     server.log.error(err);
     process.exit(1);
